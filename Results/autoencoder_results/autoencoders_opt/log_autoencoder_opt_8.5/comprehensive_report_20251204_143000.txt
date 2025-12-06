@@ -1,0 +1,311 @@
+================================================================================
+                               AUTOENCODER 8
+================================================================================
+
+Date: 2025-12-04 14:30:00
+Model: UltimateLeukemiaAutoencoder (Optimized Architecture)
+Strategy: Pure healthy training - NO leukemia added
+Training: 25 epochs, NO validation during training
+Evaluation: Comprehensive analysis AFTER training
+
+================================================================================
+TRAINING STRATEGY SUMMARY
+================================================================================
+
+Training Strategy:
+  - Pure healthy training: 1000 healthy images only
+  - NO leukemia added during training
+  - Denoising autoencoder with 0.3 noise
+  - 25 epochs maximum
+  - NO validation during training
+
+Training Statistics:
+  Training images: 1000 healthy only
+  Epochs completed: 25
+  Final training loss: 0.198525
+  Batch size: 32
+  Learning rate: 0.000100
+  Noise level: 0.300
+  Weight decay: 0.000100
+
+================================================================================
+MODEL ARCHITECTURE
+================================================================================
+
+Total Parameters: 27,276,737
+Encoder Layers: 6 convolutional layers with max pooling
+  - 450x450x1 -> 450x450x16 (no spatial reduction first)
+  - Progressive channel expansion: 16 -> 32 -> 64 -> 128 -> 256
+  - Spatial reduction: 450 -> 225 -> 112 -> 56 -> 28 -> 14
+Bottleneck Dimension: 128
+Decoder Layers: 6 upsampling layers
+Compression Ratio: ~202,500 → 128 (1582x compression)
+
+================================================================================
+EVALUATION DATASET
+================================================================================
+
+Evaluation Set Composition:
+  Healthy Images: 500
+  Leukemia Images: 250
+  Total Images: 750
+  Imbalance Ratio: 33.3% leukemia
+
+================================================================================
+ERROR STATISTICS
+================================================================================
+
+Healthy Reconstruction Errors:
+  Mean: 0.004788
+  Standard Deviation: 0.000856
+  Minimum: 0.004057
+  Maximum: 0.009583
+  90th Percentile: 0.005872
+  95th Percentile: 0.006652
+  99th Percentile: 0.008227
+
+Leukemia Reconstruction Errors:
+  Mean: 0.005182
+  Standard Deviation: 0.001052
+  Minimum: 0.004169
+  Maximum: 0.010858
+  Range: 0.006689
+
+Separation Analysis:
+  Absolute Separation: 0.000394
+  Separation Ratio: 0.4601σ (Target: >1.5σ)
+  Error Ratio: 1.0823x (Target: >3x)
+  Overlap Analysis: 0.46 standard deviations
+
+================================================================================
+PERFORMANCE METRICS
+================================================================================
+
+ROC AUC: 0.6710
+Best Threshold Strategy: optimal
+Best Threshold Value: 0.004562
+
+Best Threshold Performance:
+  Accuracy:  0.6493
+  Precision: 0.4823
+  Recall:    0.7080 (Leukemia detection rate)
+  F1 Score:  0.5737
+
+Confusion Matrix:
+  True Negatives (Healthy correctly classified):  310
+  False Positives (Healthy as Leukemia):         190
+  False Negatives (Leukemia as Healthy):         73
+  True Positives (Leukemia correctly classified): 177
+
+Detailed Metrics:
+  Sensitivity (Recall):     0.7080
+  Specificity:              0.6200
+  False Positive Rate:      0.3800
+  False Negative Rate:      0.2920
+  Positive Predictive Value: 0.4823
+  Negative Predictive Value: 0.8094
+
+Threshold Comparison:
+Threshold       Value        Accuracy   Precision  Recall     F1        
+-------------------------------------------------------------------
+optimal         0.004562     0.6493     0.4823     0.7080     0.5737    
+p90             0.005872     0.6547     0.4505     0.1640     0.2405    
+p95             0.006652     0.6600     0.4444     0.0800     0.1356    
+p99             0.008227     0.6693     0.5833     0.0280     0.0534    
+mean+1std       0.005645     0.6507     0.4464     0.2000     0.2762    
+mean+2std       0.006501     0.6573     0.4314     0.0880     0.1462    
+mean+3std       0.007357     0.6640     0.4583     0.0440     0.0803    
+
+================================================================================
+TRAINING STRATEGY EFFECTIVENESS
+================================================================================
+
+Pure Anomaly Detection Assessment:
+  1. Pure healthy training: ✓ SUCCESSFUL
+     - Trained on 1000 healthy images only
+     - Learned normal pattern reconstruction
+     - Final training loss: 0.198525
+
+  2. Model generalization: ✓ SUCCESSFUL
+     - ROC AUC: 0.6710
+     - Separation: 0.46σ
+     - Error ratio: 1.08x
+
+Blueprint Target Comparison:
+  ✗ ROC AUC: 0.6710 (Target: ≥0.78)
+  ✗ Separation: 0.46σ (Target: ≥1.5σ)
+  ✗ Error Ratio: 1.08x (Target: ≥3x)
+  ✓ Parameters: 27,276,737 (Target: ≥2.5M)
+
+Targets Met: 1/4
+
+Medical Application Considerations:
+  1. Recall (Sensitivity): 0.7080
+     - Critical for leukemia detection
+     - 70.8% of leukemia cases detected
+
+  2. Precision: 0.4823
+     - 48.2% of positive predictions are correct
+     - 190 healthy misclassified as leukemia
+
+  3. Clinical Utility:
+     - ✗ Needs improvement for clinical use
+
+================================================================================
+CONCLUSION AND RECOMMENDATIONS
+================================================================================
+
+VERDICT: NEEDS IMPROVEMENT
+Reconsider architecture or training strategy
+
+
+================================================================================
+END OF COMPREHENSIVE REPORT
+================================================================================
+
+Resumen de datasets cargados:
+  fold_0_all: 500 imágenes, labels: 500
+  fold_0_hem: 500 imágenes, labels: 500
+  fold_1_all: 500 imágenes, labels: 500
+  fold_1_hem: 500 imágenes, labels: 500
+  fold_2_all: 500 imágenes, labels: 500
+  fold_2_hem: 500 imágenes, labels: 500
+  Healthy images: 1500
+  Leukemia images: 1500
+
+[2] Preparing dataset...
+Preparing LARGE dataset with imbalance...
+Total healthy: 1500, Total leukemia: 1500
+
+DATASET SPLIT SUMMARY:
+  TRAINING: 1000 healthy images only (1000)
+  EVALUATION SET: 750 images (500 healthy + 250 leukemia)
+  Imbalance ratio: 33.3% leukemia
+  NO leukemia added during training
+
+[3] Creating model...
+  Model Parameters: 27,276,737
+  Bottleneck: 128 dimensions
+  Architecture: 6-layer encoder -> bottleneck -> 6-layer decoder
+  First convolution: 450x450x1 -> 450x450x16 (no spatial reduction)
+
+================================================================================
+[4] AUTOENCODER 8 (25 epochs)
+================================================================================
+
+PURE ANOMALY DETECTION TRAINING:
+Training: 1000 healthy images only (0% anomalies)
+Batch size: 32
+Epochs: 25
+NO leukemia added during training
+NO validation during training
+
+Epoch  |  Train Loss  |  Time (s)
+----------------------------------------
+  1    |   6.070389   |   105.32  
+  2    |   2.296628   |   102.04  
+  3    |   1.111115   |   107.97  
+  4    |   0.780191   |   115.43  
+  5    |   0.693190   |   114.81  
+  6    |   0.655022   |   114.50  
+  7    |   0.593392   |   114.59  
+  8    |   0.567020   |   114.51  
+  9    |   0.509750   |   114.54  
+  10   |   0.463319   |   114.57  
+  11   |   0.425047   |   115.06  
+  12   |   0.395773   |   114.77  
+  13   |   0.360465   |   114.19  
+  14   |   0.317067   |   114.62  
+  15   |   0.301767   |   114.35  
+  16   |   0.284617   |   114.25  
+  17   |   0.263532   |   114.52  
+  18   |   0.239156   |   114.20  
+  19   |   0.221617   |   114.61  
+  20   |   0.222502   |   114.49  
+  21   |   0.218687   |   114.26  
+  22   |   0.220990   |   114.45  
+  23   |   0.205655   |   114.51  
+  24   |   0.194742   |   114.73  
+  25   |   0.198525   |   114.57  
+
+TRAINING COMPLETED:
+  Final training loss: 0.198525
+  Total epochs: 25
+  Training completed on 1000 healthy images only
+
+================================================================================
+[5] COMPREHENSIVE EVALUATION (AFTER TRAINING)
+================================================================================
+
+================================================================================
+COMPREHENSIVE EVALUATION (AFTER TRAINING)
+================================================================================
+
+[6] Performing comprehensive analysis...
+
+Performing comprehensive performance analysis...
+
+ERROR STATISTICS:
+Healthy (n=500):
+  Mean: 0.004788 | Std: 0.000856
+  Min: 0.004057 | Max: 0.009583
+  95th percentile: 0.006652
+  99th percentile: 0.008227
+
+Leukemia (n=250):
+  Mean: 0.005182 | Std: 0.001052
+  Min: 0.004169 | Max: 0.010858
+
+SEPARATION ANALYSIS:
+  Absolute separation: 0.000394
+  Separation ratio: 0.4601σ
+  Error ratio (Leukemia/Healthy): 1.0823x
+
+THRESHOLD ANALYSIS:
+Threshold       Value        Accuracy   Precision  Recall     F1         TP     FP     TN     FN
+-----------------------------------------------------------------------------------------------
+optimal         0.004562     0.6493     0.4823     0.7080     0.5737     177    190    310    73    
+p90             0.005872     0.6547     0.4505     0.1640     0.2405     41     50     450    209
+p95             0.006652     0.6600     0.4444     0.0800     0.1356     20     25     475    230
+p99             0.008227     0.6693     0.5833     0.0280     0.0534     7      5      495    243   
+mean+1std       0.005645     0.6507     0.4464     0.2000     0.2762     50     62     438    200
+mean+2std       0.006501     0.6573     0.4314     0.0880     0.1462     22     29     471    228
+mean+3std       0.007357     0.6640     0.4583     0.0440     0.0803     11     13     487    239   
+
+DETAILED CLASSIFICATION REPORT (Best threshold: optimal = 0.004562):
+              precision    recall  f1-score   support
+
+     Healthy     0.8094    0.6200    0.7022       500
+    Leukemia     0.4823    0.7080    0.5737       250
+
+    accuracy                         0.6493       750
+   macro avg     0.6458    0.6640    0.6379       750
+weighted avg     0.7004    0.6493    0.6593       750
+
+
+Comprehensive visualization saved to: results\comprehensive_analysis_20251204_142959.png
+
+[7] Generating comprehensive report...
+
+Comprehensive report saved to: results\comprehensive_report_20251204_143000.txt
+
+================================================================================
+AUTOENCODER TRAINING COMPLETE
+================================================================================
+
+FINAL RESULTS:
+  ROC AUC:            0.6710
+  Separation Ratio:   0.4601σ
+  Error Ratio:        1.0823x
+  Best F1 Score:      0.5737
+  Recall (Detection): 0.7080
+  Precision:          0.4823
+
+TRAINING STRATEGY SUMMARY:
+  Healthy images: 1000
+  Leukemia added: 0 (pure healthy training only)
+  Final training loss: 0.198525
+
+EVALUATION SET:
+  Healthy: 500, Leukemia: 250
+  Imbalance: 33.3% leukemia

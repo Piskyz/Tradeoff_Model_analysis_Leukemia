@@ -1,0 +1,188 @@
+PCA + CNN METRICS REPORT
+============================================================
+
+FLOPS ANALYSIS:
+----------------------------------------
+Total FLOPS: 66,824,176,837,500,000
+Processing Time: 138.47s
+FLOPS/s: 482,601,772,357,391
+Variance Explained: 89.3%
+
+FLOPS Breakdown:
+  SVD: 66,823,785,000,000,000 (100.0%)
+  Projection: 386,370,000,000 (0.0%)
+  Centering: 1,215,000,000 (0.0%)
+  Grayscale Conversion: 3,037,500,000 (0.0%)
+  Flattening: 607,500,000 (0.0%)
+  Reshape: 607,500,000 (0.0%)
+
+MODEL PERFORMANCE:
+----------------------------------------
+Best Validation Accuracy: 76.00%
+Best Validation Loss: 0.5268
+Final Validation Accuracy: 74.50%
+Final Validation Loss: 0.5426
+ROC AUC: 0.8023
+
+DETAILED METRICS:
+----------------------------------------
+Accuracy:    0.7600
+Precision:   0.7254
+Recall:      0.8367
+F1-Score:    0.7771
+Specificity: 0.6833
+
+TRAINING HISTORY:
+----------------------------------------
+Epochs completed: 25
+Final Training Accuracy: 75.79%
+Final Training Loss: 0.5318
+Training Time per Epoch: ~0.00s
+
+[2] Creating train/val split BEFORE PCA...
+  Training set: 2400 images
+  Validation set: 600 images
+  Training class balance: 1200 healthy, 1200 leukemia
+  Validation class balance: 300 healthy, 300 leukemia
+
+[3] Applying PCA CORRECTLY with FLOPS counting...
+
+--- STARTING PCA (318 COMPONENTS) WITH CORRECT SPLIT AND FLOPS ---
+1. Converting to numpy array...
+2. Converting to grayscale...
+3. Flattening images...
+4. Centering data...
+5. Calculating SVD on training data... Matrix: (2400, 202500)
+   SVD completed in 125.11s
+   Estimated SVD FLOPS: 66,823,785,000,000,000
+6. Selecting 318 components...
+7. Projecting and Reconstructing images...
+8. Restoring image shape...
+
+--- PCA STATISTICS WITH FLOPS ---
+Total PCA time: 138.47s
+Total estimated FLOPS: 66,824,176,837,500,000
+FLOPS/second: 482,601,772,357,391
+Variance explained: 89.26%
+Components used: 318
+Original dimensionality: 202500
+Reduced dimensionality: 318
+Compression ratio: 636.8x
+
+FLOPS BREAKDOWN:
+  Grayscale conversion: 3,037,500,000
+  Flattening: 607,500,000
+  Centering: 1,215,000,000
+  SVD: 66,823,785,000,000,000
+  Projection: 386,370,000,000
+  Reshape: 607,500,000
+
+[4] Preparing DataLoaders...
+
+Preparing DataLoaders (CORRECT):
+  - Training shape: (2400, 450, 450) (1200 healthy, 1200 leukemia)
+  - Validation shape: (600, 450, 450) (300 healthy, 300 leukemia)
+  - Global stats (from training): min=-30.82, max=166.93, mean=7.01, std=16.87
+
+[5] Initializing improved CNN model...
+  Total parameters: 1,438,562
+  Trainable parameters: 1,438,562
+
+[6] Training model (showing Validation Loss)...
+
+Starting improved CNN training on cpu...
+Epoch  | Train Loss |  Val Loss  | Train Acc  |  Val Acc   |     LR     |  Time (s)
+--------------------------------------------------------------------------------
+  1    |   0.6947   |   0.7135   |   61.96   % |   56.50   % | 1.00e-03 |   643.84  
+    ✓ Improved model saved (Acc: 56.50%, Loss: 0.7135)
+  2    |   0.6405   |   0.6722   |   64.29   % |   63.67   % | 1.00e-03 |   619.68  
+    ✓ Improved model saved (Acc: 63.67%, Loss: 0.6722)
+  3    |   0.6165   |   0.7011   |   67.88   % |   62.33   % | 1.00e-03 |   670.34  
+  4    |   0.5796   |   0.6841   |   71.62   % |   66.17   % | 1.00e-03 |   688.86  
+    ✓ Improved model saved (Acc: 66.17%, Loss: 0.6841)
+  5    |   0.5852   |   0.7151   |   70.71   % |   55.00   % | 1.00e-03 |   688.03  
+  6    |   0.5730   |   0.5547   |   72.83   % |   72.50   % | 1.00e-03 |   688.92  
+    ✓ Improved model saved (Acc: 72.50%, Loss: 0.5547)
+  7    |   0.5679   |   0.5627   |   72.83   % |   72.17   % | 1.00e-03 |   687.11  
+  8    |   0.5815   |   0.7152   |   71.96   % |   58.67   % | 1.00e-03 |   688.46  
+  9    |   0.5662   |   0.5647   |   73.54   % |   71.67   % | 1.00e-03 |   689.51  
+  10   |   0.5692   |   0.5545   |   72.54   % |   72.83   % | 1.00e-03 |   688.29  
+    ✓ Improved model saved (Acc: 72.83%, Loss: 0.5545)
+  11   |   0.5624   |   0.8515   |   72.83   % |   57.33   % | 1.00e-03 |   688.44  
+  12   |   0.5502   |   0.6930   |   73.04   % |   61.17   % | 1.00e-03 |   686.77  
+  13   |   0.5451   |   0.6110   |   74.96   % |   69.50   % | 1.00e-03 |   687.09  
+  14   |   0.5543   |   0.8019   |   73.67   % |   58.67   % | 5.00e-04 |   687.97  
+  15   |   0.5407   |   0.6003   |   74.62   % |   71.33   % | 5.00e-04 |   688.42  
+  16   |   0.5392   |   0.8074   |   74.62   % |   62.83   % | 5.00e-04 |   688.07  
+  17   |   0.5181   |   0.5328   |   75.88   % |   75.00   % | 5.00e-04 |   688.75  
+    ✓ Improved model saved (Acc: 75.00%, Loss: 0.5328)
+  18   |   0.5305   |   0.5793   |   75.21   % |   71.00   % | 5.00e-04 |   687.92  
+  19   |   0.5216   |   0.5268   |   75.71   % |   75.83   % | 5.00e-04 |   641.11  
+    ✓ Improved model saved (Acc: 75.83%, Loss: 0.5268)
+  20   |   0.5352   |   0.5468   |   75.29   % |   74.00   % | 5.00e-04 |   655.16  
+  21   |   0.5318   |   0.5281   |   75.29   % |   76.00   % | 5.00e-04 |   690.21  
+    ✓ Improved model saved (Acc: 76.00%, Loss: 0.5281)
+  22   |   0.5290   |   0.5285   |   75.21   % |   75.00   % | 5.00e-04 |   690.16  
+  23   |   0.5339   |   0.6025   |   75.04   % |   70.67   % | 5.00e-04 |   690.16  
+  24   |   0.5316   |   0.6267   |   74.92   % |   70.50   % | 5.00e-04 |   689.79  
+  25   |   0.5318   |   0.5426   |   75.79   % |   74.50   % | 2.50e-04 |   689.64  
+
+Training completed.
+Best validation accuracy: 76.00%
+Best validation loss: 0.5268
+
+[7] Generating complete analysis with FLOPS...
+
+============================================================
+COMPLETE MODEL EVALUATION
+============================================================
+
+CONFUSION MATRIX:
+                 Prediction
+               Healthy Leukemia
+True Healthy    205       95
+True Leukemia    49      251
+
+DETAILED METRICS:
+  Accuracy:    0.7600
+  Precision:   0.7254
+  Recall:      0.8367 (Sensitivity)
+  F1-Score:    0.7771
+  Specificity: 0.6833
+
+ROC CURVE:
+  AUC: 0.8023
+
+CLASSIFICATION REPORT:
+              precision    recall  f1-score   support
+
+     Healthy       0.81      0.68      0.74       300
+    Leukemia       0.73      0.84      0.78       300
+
+    accuracy                           0.76       600
+   macro avg       0.77      0.76      0.76       600
+weighted avg       0.77      0.76      0.76       600
+
+
+Complete visualizations saved to: logs_pca_cnn_improved_flops\pca_cnn_comprehensive_20251205_115553.png
+Detailed metrics saved to: logs_pca_cnn_improved_flops\pca_cnn_metrics_20251205_115553.txt
+
+======================================================================
+FINAL SUMMARY
+======================================================================
+
+PCA + CNN PERFORMANCE:
+  - Best Validation Accuracy: 76.00%
+  - Best Validation Loss: 0.5268
+  - Final Validation Accuracy: 74.50%
+  - Final Validation Loss: 0.5426
+  - Overfitting Gap: 1.29%
+
+PCA STATISTICS:
+  - Total FLOPS: 66,824,176,837,500,000
+  - Processing Time: 138.47s
+  - Variance Explained: 89.26%
+
+MODEL STATISTICS:
+  - Total Parameters: 1,438,562
+  - Trainable Parameters: 1,438,562

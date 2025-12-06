@@ -1,0 +1,385 @@
+================================================================================
+           ULTIMATE LEUKEMIA AUTOENCODER - PURE ANOMALY DETECTION
+================================================================================
+
+Date: 2025-12-04 13:03:11
+Model: UltimateLeukemiaAutoencoder
+Strategy: PURE anomaly detection with gradual leukemia introduction
+Training: NO validation during training
+Evaluation: Comprehensive analysis AFTER training
+
+================================================================================
+TRAINING STRATEGY SUMMARY
+================================================================================
+
+Phase 1 (Epochs 1-30):
+  - Pure healthy training: 1000 healthy images
+  - 0% leukemia anomalies
+  - Learn normal pattern reconstruction
+
+Phase 2 (Epochs 41+):
+  - VERY SLOW anomaly introduction
+  - Add 2 leukemia image every 2 epochs
+  - Maintain low anomaly ratio
+
+Training Statistics:
+  Initial healthy images: 1000
+  Leukemia available: 150 images
+  Leukemia added: 34
+  Final training size: 1034
+  Final anomaly ratio: 3.29%
+  Final training loss: 0.131669
+  Batch size: 32
+  Learning rate: 0.000100
+  Noise level: 0.250
+  Weight decay: 0.000100
+
+================================================================================
+MODEL ARCHITECTURE
+================================================================================
+
+Total Parameters: 26,471,889
+Encoder Layers: 5 convolutional layers
+Bottleneck Dimension: 256
+Decoder Layers: 6 upsampling layers
+Compression Ratio: ~791x (450x450 → 256)
+
+================================================================================
+EVALUATION DATASET
+================================================================================
+
+Evaluation Set Composition:
+  Healthy Images: 500
+  Leukemia Images: 250
+  Total Images: 750
+  Imbalance Ratio: 33.3% leukemia
+
+================================================================================
+ERROR STATISTICS
+================================================================================
+
+Healthy Reconstruction Errors:
+  Mean: 0.002124
+  Standard Deviation: 0.001387
+  Minimum: 0.000907
+  Maximum: 0.008884
+  90th Percentile: 0.004090
+  95th Percentile: 0.005134
+  99th Percentile: 0.006804
+
+Leukemia Reconstruction Errors:
+  Mean: 0.003039
+  Standard Deviation: 0.001566
+  Minimum: 0.000963
+  Maximum: 0.009807
+  Range: 0.008843
+
+Separation Analysis:
+  Absolute Separation: 0.000915
+  Separation Ratio: 0.6597σ (Target: >1.5σ)
+  Error Ratio: 1.4309x (Target: >3x)
+  Overlap Analysis: 0.66 standard deviations
+
+================================================================================
+PERFORMANCE METRICS
+================================================================================
+
+ROC AUC: 0.7218
+Best Threshold Strategy: optimal
+Best Threshold Value: 0.002021
+
+Best Threshold Performance:
+  Accuracy:  0.6747
+  Precision: 0.5085
+  Recall:    0.7200 (Leukemia detection rate)
+  F1 Score:  0.5960
+
+Confusion Matrix:
+  True Negatives (Healthy correctly classified):  326
+  False Positives (Healthy as Leukemia):         174
+  False Negatives (Leukemia as Healthy):         70
+  True Positives (Leukemia correctly classified): 180
+
+Detailed Metrics:
+  Sensitivity (Recall):     0.7200
+  Specificity:              0.6520
+  False Positive Rate:      0.3480
+  False Negative Rate:      0.2800
+  Positive Predictive Value: 0.5085
+  Negative Predictive Value: 0.8232
+
+Threshold Comparison:
+Threshold       Value        Accuracy   Precision  Recall     F1        
+-------------------------------------------------------------------
+optimal         0.002021     0.6747     0.5085     0.7200     0.5960    
+p90             0.004090     0.6653     0.4949     0.1960     0.2808    
+p95             0.005134     0.6613     0.4565     0.0840     0.1419    
+p99             0.006804     0.6733     0.6667     0.0400     0.0755    
+mean+1std       0.003512     0.6747     0.5205     0.3040     0.3838    
+mean+2std       0.004899     0.6587     0.4464     0.1000     0.1634    
+mean+3std       0.006287     0.6693     0.5556     0.0400     0.0746    
+
+================================================================================
+TRAINING STRATEGY EFFECTIVENESS
+================================================================================
+
+Pure Anomaly Detection Assessment:
+  1. Initial pure healthy training: ✓ SUCCESSFUL
+     - 30 epochs of healthy-only training
+     - Learned normal pattern reconstruction
+
+  2. Gradual anomaly introduction: ✓ SUCCESSFUL
+     - Started after epoch 30
+     - VERY SLOW addition (1 image/5 epochs)
+     - Final anomaly ratio: 3.29%
+
+  3. Model generalization: ✓ SUCCESSFUL
+     - ROC AUC: 0.7218
+     - Separation: 0.66σ
+     - Error ratio: 1.43x
+
+Blueprint Target Comparison:
+  ✗ ROC AUC: 0.7218 (Target: ≥0.78)
+  ✗ Separation: 0.66σ (Target: ≥1.5σ)
+  ✗ Error Ratio: 1.43x (Target: ≥3x)
+  ✓ Parameters: 26,471,889 (Target: ≥2.5M)
+
+Targets Met: 1/4
+
+Medical Application Considerations:
+  1. Recall (Sensitivity): 0.7200
+     - Critical for leukemia detection
+     - 72.0% of leukemia cases detected
+
+  2. Precision: 0.5085
+     - 50.8% of positive predictions are correct
+     - 174 healthy misclassified as leukemia
+
+  3. Clinical Utility:
+     - ✗ Needs improvement for clinical use
+
+================================================================================
+CONCLUSION AND RECOMMENDATIONS
+================================================================================
+
+VERDICT: NEEDS IMPROVEMENT
+Reconsider architecture or training strategy
+
+Critical Improvements Needed:
+  1. Increase bottleneck compression
+  2. Add more training data
+  3. Implement attention mechanisms
+
+================================================================================
+END OF COMPREHENSIVE REPORT
+================================================================================
+
+
+[2] Preparing dataset...
+Preparing LARGE dataset with imbalance...
+Total healthy: 1500, Total leukemia: 1500
+
+DATASET SPLIT SUMMARY:
+  INITIAL TRAINING: 1000 healthy images (1000)
+  FOR SLOW ADDITION: 150 leukemia images (150)
+  EVALUATION SET: 750 images (500 healthy + 250 leukemia)
+  Imbalance ratio: 33.3% leukemia
+  Addition starts AFTER epoch 30
+  VERY SLOW addition rate
+
+[3] Creating model...
+  Model Parameters: 26,471,889
+  Bottleneck: 256 dimensions
+  Architecture: 5-layer encoder -> bottleneck -> 6-layer decoder
+
+================================================================================
+[4] PURE ANOMALY DETECTION TRAINING (100 epochs)
+================================================================================
+
+PURE ANOMALY DETECTION TRAINING:
+Initial training: 1000 healthy images (0% anomalies)
+Available for addition: 150 leukemia images
+Batch size: 32
+Addition starts AFTER epoch 40
+Addition rate: 2 images every 2 epochs
+NO validation during training
+
+Epoch  |  Train Loss  | Train Size | Anomalies  |  Time (s)
+----------------------------------------------------------------------
+  1    |   5.040059   |    1000    |     0      |   49.33   
+  2    |   2.546555   |    1000    |     0      |   47.58   
+  3    |   1.215072   |    1000    |     0      |   47.16   
+  4    |   0.702067   |    1000    |     0      |   45.39   
+  5    |   0.543596   |    1000    |     0      |   48.96   
+  6    |   0.491526   |    1000    |     0      |   48.47   
+  7    |   0.438019   |    1000    |     0      |   47.96   
+  8    |   0.382951   |    1000    |     0      |   46.28   
+  9    |   0.346056   |    1000    |     0      |   45.82   
+  10   |   0.308686   |    1000    |     0      |   45.96   
+  11   |   0.278872   |    1000    |     0      |   45.26   
+  12   |   0.259122   |    1000    |     0      |   46.80   
+  13   |   0.235516   |    1000    |     0      |   45.59   
+  14   |   0.234466   |    1000    |     0      |   46.68   
+  15   |   0.214756   |    1000    |     0      |   48.00   
+  16   |   0.214288   |    1000    |     0      |   49.54   
+  17   |   0.207883   |    1000    |     0      |   48.55   
+  18   |   0.198254   |    1000    |     0      |   48.39   
+  19   |   0.201957   |    1000    |     0      |   46.97   
+  20   |   0.194705   |    1000    |     0      |   45.81   
+  21   |   0.192520   |    1000    |     0      |   45.42   
+  22   |   0.188990   |    1000    |     0      |   45.76   
+  23   |   0.189790   |    1000    |     0      |   45.76   
+  24   |   0.176343   |    1000    |     0      |   46.55   
+  25   |   0.179791   |    1000    |     0      |   48.38   
+  26   |   0.176997   |    1000    |     0      |   48.54   
+  27   |   0.171300   |    1000    |     0      |   48.44   
+  28   |   0.164092   |    1000    |     0      |   47.95   
+  29   |   0.168943   |    1000    |     0      |   48.37   
+  30   |   0.168485   |    1000    |     0      |   48.83   
+  31   |   0.154604   |    1000    |     0      |   49.51   
+  32   |   0.155965   |    1000    |     0      |   48.17   
+  33   |   0.155061   |    1000    |     0      |   45.50   
+  34   |   0.156624   |    1000    |     0      |   45.51   
+  35   |   0.158371   |    1000    |     0      |   45.40   
+  36   |   0.157524   |    1000    |     0      |   45.51   
+  37   |   0.155977   |    1000    |     0      |   46.34   
+  38   |   0.151868   |    1000    |     0      |   53.30   
+  39   |   0.146570   |    1000    |     0      |   50.18   
+  40   |   0.151853   |    1000    |     0      |   49.74   
+Epoch 40: Added 2 leukemia | Total anomalies: 2 (0.20%)
+  41   |   0.152377   |    1002    |     2      |   50.40   
+  42   |   0.150752   |    1002    |     2      |   50.34   
+Epoch 42: Added 2 leukemia | Total anomalies: 4 (0.40%)
+  43   |   0.148214   |    1004    |     4      |   50.47   
+  44   |   0.142666   |    1004    |     4      |   50.27   
+Epoch 44: Added 2 leukemia | Total anomalies: 6 (0.60%)
+  45   |   0.142176   |    1006    |     6      |   50.79   
+  46   |   0.138323   |    1006    |     6      |   50.20   
+Epoch 46: Added 2 leukemia | Total anomalies: 8 (0.79%)
+  47   |   0.139389   |    1008    |     8      |   50.43   
+  48   |   0.143160   |    1008    |     8      |   50.42   
+Epoch 48: Added 2 leukemia | Total anomalies: 10 (0.99%)
+  49   |   0.137365   |    1010    |     10     |   48.36   
+  50   |   0.140212   |    1010    |     10     |   46.98   
+Epoch 50: Added 2 leukemia | Total anomalies: 12 (1.19%)
+  51   |   0.136666   |    1012    |     12     |   46.49   
+  52   |   0.134561   |    1012    |     12     |   46.33   
+Epoch 52: Added 2 leukemia | Total anomalies: 14 (1.38%)
+  53   |   0.136367   |    1014    |     14     |   47.59   
+  54   |   0.136674   |    1014    |     14     |   48.57   
+Epoch 54: Added 2 leukemia | Total anomalies: 16 (1.57%)
+  55   |   0.135532   |    1016    |     16     |   51.00   
+  56   |   0.133166   |    1016    |     16     |   51.16   
+Epoch 56: Added 2 leukemia | Total anomalies: 18 (1.77%)
+  57   |   0.132341   |    1018    |     18     |   51.07   
+  58   |   0.132574   |    1018    |     18     |   50.89   
+Epoch 58: Added 2 leukemia | Total anomalies: 20 (1.96%)
+  59   |   0.133343   |    1020    |     20     |   51.16   
+  60   |   0.131992   |    1020    |     20     |   50.90   
+Epoch 60: Added 2 leukemia | Total anomalies: 22 (2.15%)
+  61   |   0.131254   |    1022    |     22     |   51.10   
+  62   |   0.133166   |    1022    |     22     |   50.90   
+Epoch 62: Added 2 leukemia | Total anomalies: 24 (2.34%)
+  63   |   0.126031   |    1024    |     24     |   51.17   
+  64   |   0.125808   |    1024    |     24     |   51.03   
+Epoch 64: Added 2 leukemia | Total anomalies: 26 (2.53%)
+  65   |   0.128978   |    1026    |     26     |   51.56   
+  66   |   0.134930   |    1026    |     26     |   51.43   
+Epoch 66: Added 2 leukemia | Total anomalies: 28 (2.72%)
+  67   |   0.134692   |    1028    |     28     |   51.53   
+  68   |   0.136194   |    1028    |     28     |   51.47   
+Epoch 68: Added 2 leukemia | Total anomalies: 30 (2.91%)
+  69   |   0.128533   |    1030    |     30     |   51.45   
+  70   |   0.130081   |    1030    |     30     |   51.21   
+Epoch 70: Added 2 leukemia | Total anomalies: 32 (3.10%)
+  71   |   0.126893   |    1032    |     32     |   51.47   
+  72   |   0.127201   |    1032    |     32     |   51.52   
+Epoch 72: Added 2 leukemia | Total anomalies: 34 (3.29%)
+  73   |   0.133804   |    1034    |     34     |   50.98   
+  74   |   0.131669   |    1034    |     34     |   47.45   
+
+Early stopping at epoch 74
+
+TRAINING COMPLETED:
+  Final training set: 1034 images
+  Leukemia anomalies added: 34
+  Final anomaly ratio: 3.29%
+  Final training loss: 0.131669
+
+================================================================================
+[5] COMPREHENSIVE EVALUATION (AFTER TRAINING)
+================================================================================
+
+================================================================================
+COMPREHENSIVE EVALUATION (AFTER TRAINING)
+================================================================================
+
+[6] Performing comprehensive analysis...
+
+Performing comprehensive performance analysis...
+
+ERROR STATISTICS:
+Healthy (n=500):
+  Mean: 0.002124 | Std: 0.001387
+  Min: 0.000907 | Max: 0.008884
+  95th percentile: 0.005134
+  99th percentile: 0.006804
+
+Leukemia (n=250):
+  Mean: 0.003039 | Std: 0.001566
+  Min: 0.000963 | Max: 0.009807
+
+SEPARATION ANALYSIS:
+  Absolute separation: 0.000915
+  Separation ratio: 0.6597σ
+  Error ratio (Leukemia/Healthy): 1.4309x
+
+THRESHOLD ANALYSIS:
+Threshold       Value        Accuracy   Precision  Recall     F1         TP     FP     TN     FN
+-----------------------------------------------------------------------------------------------
+optimal         0.002021     0.6747     0.5085     0.7200     0.5960     180    174    326    70
+p90             0.004090     0.6653     0.4949     0.1960     0.2808     49     50     450    201
+p95             0.005134     0.6613     0.4565     0.0840     0.1419     21     25     475    229   
+p99             0.006804     0.6733     0.6667     0.0400     0.0755     10     5      495    240
+mean+1std       0.003512     0.6747     0.5205     0.3040     0.3838     76     70     430    174
+mean+2std       0.004899     0.6587     0.4464     0.1000     0.1634     25     31     469    225
+mean+3std       0.006287     0.6693     0.5556     0.0400     0.0746     10     8      492    240
+
+DETAILED CLASSIFICATION REPORT (Best threshold: optimal = 0.002021):
+              precision    recall  f1-score   support
+
+     Healthy     0.8232    0.6520    0.7277       500
+    Leukemia     0.5085    0.7200    0.5960       250
+
+    accuracy                         0.6747       750
+   macro avg     0.6659    0.6860    0.6619       750
+weighted avg     0.7183    0.6747    0.6838       750
+
+
+Comprehensive visualization saved to: results\comprehensive_analysis_20251204_130310.png
+
+[7] Generating comprehensive report...
+
+Comprehensive report saved to: results\comprehensive_report_20251204_130311.txt
+
+================================================================================
+PURE ANOMALY DETECTION TRAINING COMPLETE
+================================================================================
+
+FINAL RESULTS:
+  ROC AUC:            0.7218
+  Separation Ratio:   0.6597σ
+  Error Ratio:        1.4309x
+  Best F1 Score:      0.5960
+  Recall (Detection): 0.7200
+  Precision:          0.5085
+
+TRAINING STRATEGY SUMMARY:
+  Initial healthy: 1000
+  Leukemia added: 34 (VERY SLOW)
+  Final anomaly ratio: 3.29%
+  Final training loss: 0.131669
+
+EVALUATION SET:
+  Healthy: 500, Leukemia: 250
+  Imbalance: 33.3% leukemia

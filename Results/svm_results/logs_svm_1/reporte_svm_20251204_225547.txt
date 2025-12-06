@@ -1,0 +1,46 @@
+============================================================
+REPORTE DE RENDIMIENTO - SVM CLASSIFIER
+============================================================
+
+Modelo: Support Vector Machine (RBF Kernel)
+Pipeline: Resize(128x128) -> Scaler -> PCA(0.95) -> SVM
+Fecha: 20251204_225547
+
+------------------------------------------------------------
+TIEMPOS
+------------------------------------------------------------
+Tiempo de Entrenamiento: 15.30 s
+Tiempo de Inferencia (Test): 0.34 s
+Latencia promedio por imagen: 0.56 ms
+
+------------------------------------------------------------
+METRICAS
+------------------------------------------------------------
+Accuracy: 0.7517
+ROC AUC Score: 0.8086
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     Healthy       0.78      0.71      0.74       300
+    Leukemia       0.73      0.80      0.76       300
+
+    accuracy                           0.75       600
+   macro avg       0.75      0.75      0.75       600
+weighted avg       0.75      0.75      0.75       600
+
+Datos divididos:
+  - Train: 2400
+  - Test:  600
+
+Iniciando entrenamiento del Pipeline SVM...
+  1. StandardScaler: Normalizando datos...
+  2. PCA: Reduciendo dimensionalidad (95% varianza)...
+  3. SVM: Entrenando clasificador (Kernel RBF)...
+
+Entrenamiento completado en 15.30 segundos.
+PCA redujo las features de 16384 a 318 componentes.
+
+Evaluando modelo en Test Set...
+Accuracy: 75.17%
+ROC AUC: 0.8086
